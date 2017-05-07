@@ -137,7 +137,10 @@ DockerSandbox.prototype.execute = function(success)
     console.log(st);
 
     //execute the Docker, This is done ASYNCHRONOUSLY
-    exec(st);
+    //exec(st);
+    exec(st, function(error, stdout, stderr){
+        console.log(error,stdout,stderr);
+    })
     console.log("------------------------------")
     //Check For File named "completed" after every 1 second
     var intid = setInterval(function() 
