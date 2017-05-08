@@ -36,6 +36,9 @@ h3{
     <label>Language ID <a href="#" id="langhelp">(list)</a>:</label>
     <input type='text' id="langid" value=0>
     <br>
+    <label>Time(second):</label>
+    <input type='number' id='time' value=0> 
+    <br>
     <label>Code:</label>
     <textarea id="code">print 'Hello!'</textarea>
     <br>
@@ -81,15 +84,18 @@ h3{
         var langid = $('#langid').val();
         var codeF = $('#code').val();
         var stdin = $('#stdin').val();
+        var time = $('#time').val();
 // passing the json file to the page 
         var json = {
             language: langid,
             code: codeF,
-            stdin:stdin
+            stdin:stdin,
+            time: time
         };
         console.log(json);
 
         $.post("/compile", json, function(data, error, xhr) {
+            console.log(data);
 
             document.getElementById("output").innerHTML = data.output;
             console.log(error);
